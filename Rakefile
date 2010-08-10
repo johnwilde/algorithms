@@ -1,27 +1,26 @@
+require 'rake'
+require 'rake/rdoctask'
+
+# get the c specs running
 require 'echoe'
 require "rake/clean"
 OBJ = FileList['**/*.rbc']
 CLEAN.include(OBJ)
- 
-Echoe.new('algorithms') do |p|
+
+Echoe.new('grosser-algorithms') do |p|
   p.author               = 'Kanwei Li'
   p.email                = 'kanwei@gmail.com'
   p.summary              = 'A library of algorithms and containers.'
   p.url                  = 'http://rubyforge.org/projects/algorithms/'
-  p.version              = "0.2.0"
+  p.version              = File.read('VERSION').strip
   p.runtime_dependencies = []
 end
 
-task :push do
-  sh "git push"    # Rubyforge
-  sh "git push --tags"    # Rubyforge
-  sh "git push gh" # Github
-  sh "git push gh --tags" # Github
+desc 'Generate documentation for the userstamp plugin.'
+Rake::RDocTask.new(:rdoc) do |rdoc|
+  rdoc.title    = 'Algorithms'
+  rdoc.rdoc_dir = 'rdoc'
+  rdoc.options << '--line-numbers' << '--inline-source'
+  rdoc.rdoc_files.include('README.markdown', 'History.txt')
+  rdoc.rdoc_files.include('lib/**/*.rb')
 end
-
-task :hanna do
-  sh "rm -fr doc"
-  sh "hanna -SN lib/ -m Algorithms"
-  sh "scp -rq doc/* kanwei@rubyforge.org:/var/www/gforge-projects/algorithms"
-end
-

@@ -49,6 +49,8 @@
 =end
 
 module Algorithms
+  VERSION = File.read( File.join(File.dirname(__FILE__),'..','VERSION') ).strip
+  
   module Algorithms; end
   module Containers; end
 end

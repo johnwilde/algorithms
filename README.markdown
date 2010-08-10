@@ -1,3 +1,8 @@
+# This branch
+ - gem install grosser-algorithms
+ - misc fixes for jruby/1.9 by [szuecs](http://github.com/szuecs)
+ - gemification + rdoc by [Michael Grosser](http://pragmatig.wordpress.com)
+
 # algorithms
 
 * Official homes are here on github, and at [rubyforge](http://rubyforge.org/projects/algorithms/)
